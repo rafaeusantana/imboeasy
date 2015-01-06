@@ -1,0 +1,72 @@
+<h1>Imóvel</h1>
+
+<div style="width:50%">
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Endereço</h3>
+  </div>
+  <div class="panel-body">
+	<%=@imovel.endereco%>, <%=@imovel.cidade%>, <%=@imovel.estado.nome%>
+  </div>
+</div>
+</div>
+
+<div style="width:50%">
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Características</h3>
+  </div>
+  <div class="panel-body">
+	Tipo de imóvel: <%=@imovel.tipo_imovel.nome%>
+	<br /><br />
+	Quantidade de quartos: <%=@imovel.qtd_quartos%>
+	<br /><br />
+	Metragem (m²): <%=@imovel.metragem%>
+	<br /><br />
+	Vagas de automóvel: <%=@imovel.vagas_auto%>	
+  </div>
+</div>
+</div>
+
+<div style="width:50%">
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Valores</h3>
+  </div>
+  <div class="panel-body">
+	Valor de aluguel: <%=@imovel.valor_aluguel%>
+	<br /><br />
+	Valor de venda: <%=@imovel.valor_venda%>
+	<br /><br />
+	Valor do condomínio: <%=@imovel.valor_condominio%>
+  </div>
+</div>
+</div>
+
+<div style="width:50%">
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Descrição</h3>
+  </div>
+  <div class="panel-body">
+	<%=simple_format(@imovel.descricao)%>
+  </div>
+</div>
+</div>
+
+
+<div style="width:50%">
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Fotos</h3>
+  </div>
+  <div class="panel-body">
+	  <div class="form-group">
+
+	  </div>
+  </div>
+</div>
+</div>
+
+<%= link_to 'Editar', edit_imovel_path(@imovel) %> |
+<%= link_to 'Voltar', imovels_path %>
