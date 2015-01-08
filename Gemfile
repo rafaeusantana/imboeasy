@@ -35,7 +35,7 @@ gem 'foreigner'
 gem 'pry-byebug'
 gem 'devise'
 
-gem 'carrierwave'
+gem 'carrierwave', :git => 'git://github.com/rafaeusantana/carrierwave.git'
 gem 'rmagick', '2.13.2'
 
 # Use ActiveModel has_secure_password

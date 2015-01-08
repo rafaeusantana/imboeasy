@@ -29,9 +29,10 @@ class ImovelsController < ApplicationController
   # POST /imovels.json
   def create
     @imovel = Imovel.new(imovel_params)
+    @imovel.created_by = current_user.id
     respond_to do |format|
       if @imovel.save
-        format.html { redirect_to imovel_path(@imovel), notice: 'imovel criada com sucesso.' }
+        format.html { redirect_to imovel_path(@imovel), notice: 'Imóvel criado com sucesso.' }
         format.json { render :show, status: :created, location: @imovel }
       else
         format.html { render :new }
@@ -45,7 +46,7 @@ class ImovelsController < ApplicationController
   def update
     respond_to do |format|
       if @imovel.update(imovel_params)
-        format.html { redirect_to imovel_path(@imovel), notice: 'imovel atualizado com sucesso.' }
+        format.html { redirect_to imovel_path(@imovel), notice: 'Imóvel atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @imovel }
       else
         format.html { render :edit }
@@ -59,7 +60,7 @@ class ImovelsController < ApplicationController
   def destroy
     @imovel.destroy
     respond_to do |format|
-      format.html { redirect_to imovels_url, notice: 'imovel excluído com sucesso.' }
+      format.html { redirect_to imovels_url, notice: 'Imóvel excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
