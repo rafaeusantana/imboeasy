@@ -36,6 +36,7 @@ gem 'pry-byebug'
 gem 'devise'
 
 gem 'carrierwave'
+gem 'rmagick', '2.13.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

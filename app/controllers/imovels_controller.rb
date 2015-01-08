@@ -29,7 +29,6 @@ class ImovelsController < ApplicationController
   # POST /imovels.json
   def create
     @imovel = Imovel.new(imovel_params)
-
     respond_to do |format|
       if @imovel.save
         format.html { redirect_to imovel_path(@imovel), notice: 'imovel criada com sucesso.' }
@@ -73,6 +72,6 @@ class ImovelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def imovel_params
-      params.require(:imovel).permit(:endereco, :cidade, :estado_id, :tipo_imovel_id, :qtd_quartos, :metragem, :vagas_auto, :valor_aluguel, :valor_venda, :valor_condominio, :descricao )
+      params.require(:imovel).permit(:endereco, :cidade, :estado_id, :tipo_imovel_id, :qtd_quartos, :metragem, :vagas_auto, :valor_aluguel, :valor_venda, :valor_condominio, :descricao, fotos: [] )
     end
 end
