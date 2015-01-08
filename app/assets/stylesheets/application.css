@@ -18,6 +18,14 @@ body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
+br{
+  clear: left;
+}
+
+table{
+  font-size:14px;
+}
+
 .hero-spacer {
   margin-top: 50px;
 }
@@ -31,9 +39,28 @@ footer {
 }
 
 #inner-container {
-  width: 900px;
+  width: 600px;
   max-width: 100%;
   margin:0 auto;
 }
+
+.valor-caracteristica{
+  text-align:center;
+  color: #E36729;
+}
+
+.texto-caracteristica{
+  text-align:center;
+}
+
+.box-caracteristica{
+  margin-right:5%;
+  float:left;
+}
+
+.caracteristicas{
+  max-width:100%;
+}
+
 
 

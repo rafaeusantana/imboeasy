@@ -1,14 +1,50 @@
 <div id="inner-container">
-<h1>Imóvel</h1>
+<h3><%=@imovel.endereco%> - <%=@imovel.cidade%></h3>
 
 
 <div class="fotorama">
-<% @imovel.fotos.try(:each) do |i| %>
-<%= image_tag(i.url) %>
-<% end %>
+	<% @imovel.fotos.try(:each) do |i| %>
+	<%= image_tag(i.url) %>
+	<% end %>
 </div>
 
+<div id="caracteristicas">
+	<% if !@imovel.qtd_quartos.nil? && @imovel.qtd_quartos>0 %>
+	<div class="box-caracteristica">
+		<h5 class="valor-caracteristica"><%=@imovel.qtd_quartos%></h2>
+		<h5 class="texto-caracteristica"><%=(@imovel.qtd_quartos>1) ? 'QUARTOS':'QUARTO'%></h2>
+	</div>
+	<% end %>
+	<% if !@imovel.qtd_suites.nil? && @imovel.qtd_suites>0 %>
+	<div class="box-caracteristica">
+		<h5 class="valor-caracteristica"><%=@imovel.qtd_suites%></h2>
+		<h5 class="texto-caracteristica"><%=(@imovel.qtd_suites>1) ? 'SUÍTES':'SUÍTE'%></h2>
+	</div>
+	<% end %>
+	<% if !@imovel.vagas_auto.nil? && @imovel.vagas_auto>0 %>
+	<div class="box-caracteristica">
+		<h5 class="valor-caracteristica"><%=@imovel.vagas_auto%></h2>
+		<h5 class="texto-caracteristica"><%=(@imovel.vagas_auto>1) ? 'VAGAS':'VAGA'%></h2>
+	</div>
+	<% end %>
+	<% if !@imovel.metragem.nil? && @imovel.metragem>0 %>
+	<div class="box-caracteristica">
+		<h5 class="valor-caracteristica"><%=@imovel.metragem%></h2>
+		<h5 class="texto-caracteristica">ÁREA (m²)</h2>
+	</div>
+	<% end %>
+<div>
+
 <br />
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Descrição</h3>
+  </div>
+  <div class="panel-body">
+	<%=simple_format(@imovel.descricao)%>
+  </div>
+</div>
 
 <div class="panel panel-info">
   <div class="panel-heading">
@@ -24,22 +60,41 @@
     <h3 class="panel-title">Características</h3>
   </div>
   <div class="panel-body">
-	Tipo de imóvel: <%=@imovel.tipo_imovel.try(:nome)%>
-	<br /><br />
-	Quantidade de quartos: <%=@imovel.qtd_quartos%>
-	<br /><br />
-	Quantidade de suítes: <%=@imovel.qtd_suites%>
-	<br /><br />
-	Metragem (m²): <%=@imovel.metragem%>
-	<br /><br />
-	Vagas de automóvel: <%=@imovel.vagas_auto%>	
-	<br /><br />
-	Ano de construção: <%=@imovel.ano_construcao%>
-	<br /><br />
-	Áreas comuns: <br />
-	<%@imovel.area_comums.each do |i|%>
-	  - <%=i.nome%><br />
-	<%end%>
+	<table class="table">
+	<tr>
+		<td width="40%"><b>Tipo de imóvel</b></td>
+		<td><%=@imovel.tipo_imovel.try(:nome)%></td>
+	</tr>
+	<tr>
+		<td><b>Quantidade de quartos</b></td>
+		<td><%=@imovel.qtd_quartos%></td>
+	</tr>
+	<tr>
+		<td><b>Quantidade de suítes</b></td>
+		<td><%=@imovel.qtd_suites%></td>
+	</tr>
+	<tr>
+		<td><b>Área (m²)</b></td>
+		<td><%=@imovel.metragem%></td>
+	</tr>
+	<tr>
+		<td><b>Vagas de automóvel</b></td>
+		<td><%=@imovel.vagas_auto%></td>
+	</tr>
+	<tr>
+		<td><b>Ano de construção</b></td>
+		<td><%=@imovel.ano_construcao%></td>
+	</tr>
+	<tr>
+		<td><b>Áreas comuns</b></td>
+		<td>
+			<%@imovel.area_comums.each do |i|%>
+			  - <%=i.nome%><br />
+			<%end%>	
+		</td>
+	</tr>
+	</table>
+
   </div>
 </div>
 
@@ -48,20 +103,20 @@
     <h3 class="panel-title">Valores</h3>
   </div>
   <div class="panel-body">
-	Valor de aluguel: <%=@imovel.valor_aluguel%>
-	<br /><br />
-	Valor de venda: <%=@imovel.valor_venda%>
-	<br /><br />
-	Valor do condomínio: <%=@imovel.valor_condominio%>
-  </div>
-</div>
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">Descrição</h3>
-  </div>
-  <div class="panel-body">
-	<%=simple_format(@imovel.descricao)%>
+	<table class="table">
+	<tr>
+		<td width="40%"><b>Valor de aluguel (R$)</b></td>
+		<td><%=@imovel.valor_aluguel%></td>
+	</tr>
+	<tr>
+		<td><b>Valor de venda (R$)</b></td>
+		<td><%=@imovel.valor_venda%></td>
+	</tr>
+	<tr>
+		<td><b>Valor do condomínio (R$)</b></td>
+		<td><%=@imovel.valor_condominio%></td>
+	</tr>
+	</table>
   </div>
 </div>
 
