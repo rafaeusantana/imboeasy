@@ -28,9 +28,18 @@
 	<br /><br />
 	Quantidade de quartos: <%=@imovel.qtd_quartos%>
 	<br /><br />
+	Quantidade de suítes: <%=@imovel.qtd_suites%>
+	<br /><br />
 	Metragem (m²): <%=@imovel.metragem%>
 	<br /><br />
 	Vagas de automóvel: <%=@imovel.vagas_auto%>	
+	<br /><br />
+	Ano de construção: <%=@imovel.ano_construcao%>
+	<br /><br />
+	Áreas comuns: <br />
+	<%@imovel.area_comums.each do |i|%>
+	  - <%=i.nome%><br />
+	<%end%>
   </div>
 </div>
 

@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108031216) do
+ActiveRecord::Schema.define(version: 20150108031220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "area_comums", force: true do |t|
+    t.string "nome", limit: 50
+  end
+
+  create_table "area_comums_imovels", force: true do |t|
+    t.integer "area_comum_id"
+    t.integer "imovel_id"
+  end
 
   create_table "estados", force: true do |t|
     t.string "nome",  limit: 50, null: false
@@ -35,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150108031216) do
     t.integer "estado_id",                    null: false
     t.json    "fotos"
     t.integer "created_by"
+    t.integer "qtd_suites"
+    t.integer "ano_construcao"
   end
 
   create_table "tipo_imovels", force: true do |t|
@@ -58,6 +69,9 @@ ActiveRecord::Schema.define(version: 20150108031216) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "area_comums_imovels", "area_comums", name: "area_comums_imovels_area_comum_id_fk"
+  add_foreign_key "area_comums_imovels", "imovels", name: "area_comums_imovels_imovel_id_fk"
 
   add_foreign_key "imovels", "estados", name: "imovels_estado_id_fk"
   add_foreign_key "imovels", "tipo_imovels", name: "imovels_tipo_imovel_id_fk"

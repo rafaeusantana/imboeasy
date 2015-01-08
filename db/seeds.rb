@@ -38,3 +38,10 @@ TipoImovel.create(nome: 'Casa')
 TipoImovel.create(nome: 'Comercial')
 TipoImovel.create(nome: 'Terreno')
 
+AreaComum.create(nome: 'Piscina')
+AreaComum.create(nome: 'Playground')
+AreaComum.create(nome: 'Salão de Festas')
+AreaComum.create(nome: 'Sauna')
+AreaComum.create(nome: 'Academia')
+
+

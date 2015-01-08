@@ -47,12 +47,24 @@
 	    <%= f.text_field :qtd_quartos, :class=>"form-control input-sm" %>
 	  </div>
 	  <div class="form-group">
+	    <%= f.label :quantidade_suítes %>
+	    <%= f.text_field :qtd_suites, :class=>"form-control input-sm" %>
+	  </div>
+	  <div class="form-group">
 	    <%= f.label :metragem %>
 	    <%= f.text_field :metragem, :class=>"form-control input-sm" %>
 	  </div>
 	  <div class="form-group">
 	    <%= f.label :vagas_de_automóvel %>
 	    <%= f.text_field :vagas_auto, :class=>"form-control input-sm" %>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :ano_de_construção %>
+	    <%= f.text_field :ano_construcao, :class=>"form-control input-sm" %>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :Áreas_comuns %>
+	    <%= f.select :area_comum_ids, AreaComum.all.collect {|x| [x.nome, x.id]}, {}, :multiple => true, :class=>"form-control input-sm" %>
 	  </div>
   </div>
 </div>
@@ -87,7 +99,6 @@
 	  </div>
   </div>
 </div>
-
 
 <div class="panel panel-info">
   <div class="panel-heading">
