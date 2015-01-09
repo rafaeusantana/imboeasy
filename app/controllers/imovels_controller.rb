@@ -5,10 +5,16 @@ class ImovelsController < ApplicationController
   # GET /imovels
   # GET /imovels.json
   def index
-    @imovels = Imovel.all
-    respond_to do |format|
-      format.html
-    end
+	@imovels = Imovel.selecionarImoveis(params[:imovel])
+
+	if params[:imovel].nil?
+		@imovel = Imovel.new
+	else
+		@imovel = Imovel.new(imovel_params)
+	end	
+	  respond_to do |format|
+	    format.html
+	  end
   end
 
   # GET /imovels/1

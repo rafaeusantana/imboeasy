@@ -1,19 +1,22 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>Seja bem vindo!</h1>
+            <h1>Seja bem-vindo!</h1>
             <p>Aqui você pode procurar imóveis de sua preferência.</p>
             <p>
+		<%= form_for(@imovel, :url => { :controller => "imovels" }, :html => { :method => 'GET' }) do |f| %>
 		<div class="row">
 		  <div class="col-lg-6">
 		    <div class="input-group">
-		      <input type="text" class="form-control" placeholder="Pesquisar por...">
+		      <%= f.text_field :bairro, :class=>"form-control", :placeholder=>"Bairro", :style=>"width:50%" %>
+		      <%= f.text_field :cidade, :class=>"form-control", :placeholder=>"Cidade", :style=>"width:50%" %>
 		      <span class="input-group-btn">
-			<button class="btn btn-primary" type="button">Pesquisar</button>
+			<button class="btn btn-primary" type="submit">Pesquisar</button>
 		      </span>
 		    </div><!-- /input-group -->
 		  </div><!-- /.col-lg-6 -->
 		</div><!-- /.row -->
+		<% end %>
             </p>
         </header>
 

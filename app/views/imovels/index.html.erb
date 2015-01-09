@@ -1,30 +1,49 @@
 <h1>Pesquisar Imóveis</h1>
 
+<%= form_for(@imovel, :url => { :controller => "imovels" }, :html => { :method => 'GET' }) do |f| %>
 <div class="row">
   <div class="col-lg-6">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Pesquisar por...">
+      <%= f.text_field :bairro, :class=>"form-control", :placeholder=>"Bairro", :style=>"width:34%" %>
+      <%= f.text_field :cidade, :class=>"form-control", :placeholder=>"Cidade", :style=>"width:33%" %>
+      <%= f.select :estado_id, Estado.all.map{|c| [c.nome+' - '+c.sigla, c.id]}, {:include_blank => 'Estado'}, {:class=>"form-control", :style=>"width:33%"} %>
       <span class="input-group-btn">
-	<button class="btn btn-primary" type="button">Pesquisar</button>
+	<button class="btn btn-primary" type="submit">Pesquisar</button>
       </span>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
+<% end %>
 
 <br />
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Produtos</th>
+      <th>Resultados da busca</th>
     </tr>
   </thead>
-
   <tbody>
     <% @imovels.each do |imovel| %>
       <tr>
-        <td><%= imovel.endereco %></td>
-        <td><%= link_to 'Mostrar', imovel_path(imovel) %></td>
-        <td><%= link_to 'Editar', edit_imovel_path(imovel) %></td>
+        <td width="20%"><%=image_tag(imovel.fotos[0].thumb.url, style: "width:60%;min-width:100px") if !imovel.fotos[0].nil?%></td>
+        <td>
+	<div class="tipo-imovel-pesquisa"><%=imovel.tipo_imovel.try(:nome)%></div>
+
+	<span class="endereco-pesquisa"><%=imovel.bairro+" - "+imovel.cidade%></span><br />
+
+	<span class="caracteristicas-pesquisa">
+	<%if(imovel.qtd_quartos.present?);%><%=imovel.qtd_quartos%> <%=(imovel.qtd_quartos>1) ? 'quartos':'quarto'%>&nbsp;<%end%>
+	<%if(imovel.qtd_suites.present?);%><%=imovel.qtd_suites%> <%=(imovel.qtd_suites>1) ? 'suítes':'suíte'%>&nbsp;<%end%> 	<%if(imovel.vagas_auto.present?);%><%=imovel.vagas_auto%> <%=(imovel.vagas_auto>1) ? 'vagas':'vaga'%>&nbsp;<%end%>
+        <%if(imovel.metragem.present?);%><%=imovel.metragem%> m²&nbsp;<%end%>
+	</span>
+
+        <%if(imovel.valor_venda.present?);%><br />Valor venda: <span class="valor-pesquisa">R$ <%=imovel.valor_venda%></span><%end%>
+        <%if(imovel.valor_aluguel.present?);%><br />Valor aluguel: <span class="valor-pesquisa">R$ <%=imovel.valor_aluguel%></span><%end%>
+
+	<br /><br /><%=link_to "Ver + detalhes", imovel_path(imovel), style: "font-weight:bold" %><br />
+	</td>
+        <%if(user_signed_in?)%><td><%= link_to 'Editar', edit_imovel_path(imovel) %></td>
+        <td><%= link_to 'Excluir', imovel_path(imovel), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }%></td><%end%>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +51,4 @@
 
 <br>
 
-<%= link_to 'Adicionar imóvel', new_imovel_path %>
+<%if(user_signed_in?)%><%= link_to 'Adicionar imóvel', new_imovel_path %><%end%>

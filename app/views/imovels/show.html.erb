@@ -1,5 +1,5 @@
 <div id="inner-container">
-<h3><%=@imovel.endereco%> - <%=@imovel.cidade%></h3>
+<h3><%=@imovel.tipo_imovel.try(:nome)%> - <%=@imovel.bairro%> - <%=@imovel.cidade%></h3>
 
 
 <div class="fotorama">
@@ -120,6 +120,6 @@
   </div>
 </div>
 
-<%= link_to 'Editar', edit_imovel_path(@imovel) %> |
+<%if(user_signed_in?)%><%= link_to 'Editar', edit_imovel_path(@imovel) %> |<%end%>
 <%= link_to 'Voltar', imovels_path %>
 </div>

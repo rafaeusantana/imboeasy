@@ -63,5 +63,25 @@ footer {
   max-width:100%;
 }
 
+.tipo-imovel-pesquisa{
+  color: #E36729;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom:0px;
+  border-bottom: 1px dashed #CCC;
+}
 
+.valor-pesquisa{
+  color: #E36729;
+  font-weight: bold;
+}
+
+.caracteristicas-pesquisa{
+  color: #555;
+  font-size: 0.8em;
+}
+
+.endereco-pesquisa{
+  font-weight: bold;
+}
 
